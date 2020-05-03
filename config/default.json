@@ -1,0 +1,31 @@
+{
+  "app": {
+    "description": "Pet feeder with live stream powered by a Raspberry Pi 3 Model B and Node.js",
+    "name": "node-rpi-feeder",
+    "version": "1.0.0"
+  },
+  "logger": {
+    "outputDirectory": "logs"
+  },
+  "raspi": {
+    "camera": {
+      "outputDirectory": "camera",
+      "timelapseInterval": 800
+    },
+    "feeder": {
+      "timer": 100
+    },
+    "speech": {
+      "device": "hw:1,0",
+      "google": {
+        "credentials": "./config/google-service-account.json",
+        "projectId": "node-rpi-feeder"
+      },
+      "hotwords": ["open"],
+      "timer": 5000
+    }
+  },
+  "server": {
+    "port": 3000
+  }
+}

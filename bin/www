@@ -1,0 +1,135 @@
+#!/usr/bin/env node
+
+/**
+ * Module that handles the configuration of the server
+ *
+ * @module node-rpi-feeder/server
+ * @requires config
+ * @requires fs
+ * @requires http
+ * @requires https
+ * @requires node-rpi-feeder/app
+ * @requires node-rpi-feeder/io
+ * @requires node-rpi-feeder/logger
+ * @requires path
+ */
+
+/**
+ * config module
+ * @const
+ */
+const config = require("config");
+
+/**
+ * fs module
+ * @const
+ */
+const fs = require("fs");
+
+/**
+ * http module
+ * @const
+ */
+const http = require("http");
+
+/**
+ * https module
+ * @const
+ */
+const https = require("https");
+
+/**
+ * path module
+ * @const
+ */
+const path = require("path");
+
+/**
+ * node-rpi-feeder/app module
+ * @const
+ * @see module:node-rpi-feeder/app
+ */
+const app = require("../app");
+
+/**
+ * node-rpi-feeder/io module
+ * @const
+ * @see module:node-rpi-feeder/io
+ */
+const io = require("../io");
+
+/**
+ * node-rpi-feeder/logger module
+ * @const
+ * @see module:node-rpi-feeder/logger
+ */
+const logger = require("../logger");
+
+// Set port
+const port = config.get("server.port");
+app.set("port", port);
+
+// Create server
+let server;
+if (process.env.NODE_ENV === "production" && config.server.secure) {
+  const options = {
+    cert: fs.readFileSync(path.resolve(config.server.certificate)),
+    key: fs.readFileSync(path.resolve(config.server.privateKey)),
+    rejectUnauthorized: false,
+    requestCert: false
+  };
+  server = https.createServer(options, app);
+} else {
+  server = http.createServer(app);
+}
+
+// Set server listening
+server.listen(port);
+
+/**
+ * Called after an error occurs on the server
+ *
+ * @name onServerError
+ * @function
+ * @memberof module:node-rpi-feeder/server
+ * @param {Object} err - The error
+ */
+const onServerError = (err) => {
+  if (err.syscall !== "listen") {
+    throw err;
+  }
+
+  const bind = typeof port === "string" ? `Pipe ${port}` : `Port ${port}`;
+
+  switch (err.code) {
+    case "EACCES":
+      logger.error(`${bind} requires elevated privileges`);
+      process.exit(1);
+    case "EADDRINUSE":
+      logger.error(`${bind} is already in use`);
+      process.exit(1);
+    default:
+      throw err;
+  }
+};
+
+/**
+ * Called after the server is running and listening for connections
+ *
+ * @name onServerListening
+ * @function
+ * @memberof module:node-rpi-feeder/server
+ */
+const onServerListening = () => {
+  const addr = server.address();
+  const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+
+  logger.info(`Web server listening on ${bind}`);
+};
+
+// Server events
+server.on("error", onServerError);
+server.on("listening", onServerListening);
+
+// Attach server to the engine.io instance
+io.attach(server);

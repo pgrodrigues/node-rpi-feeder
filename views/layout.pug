@@ -1,0 +1,40 @@
+doctype html
+html(dir="ltr", lang="en")
+	head
+		- var title = appName
+		- var description = appDescription
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="description", content=description)
+		meta(name="robots", content="noindex, nofollow")
+		meta(name="theme-color", content="#ffffff")
+		meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		title #{title}
+		link(rel="apple-touch-icon", href="/apple-icon-180x180.png", sizes="180x180")
+		link(rel="icon", href="images/icon.png", sizes="512x512")
+		link(rel="icon", href="images/favicon.png", type="image/png")
+		link(rel="manifest", href="/manifest.json")
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Raleway&display=swap")
+		link(rel="stylesheet", href="vendor/css/mui.min.css")
+		link(rel="stylesheet", href="css/styles.css")
+	body
+		header.appbar.mui-appbar
+			div.mui--appbar-height.mui--appbar-line-height
+				a.appbar-brand.mui--appbar-height(href="/")
+					img(src="images/icon.png" alt=appName)
+					span #{appName}
+		main.main
+			block content
+		footer.footer.mui-container-fluid
+			.mui-row
+				.mui-col-xs-12
+					p.mui--text-center
+						| App main icon and favicon made by 
+						a(href="https://www.flaticon.com/authors/freepik" rel="noopener" target="_blank" title="Freepik") Freepik
+						|  from 
+						a(href="https://www.flaticon.com" rel="noopener" target="_blank" title="Flaticon") www.flaticon.com
+					p.mui--text-center #{appName} #{appVersion}
+	script(src="vendor/jquery.min.js")
+	script(src="vendor/js/mui.min.js")
+	script(src="vendor/socket.io.js")
+	script(src="js/main.js")

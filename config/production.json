@@ -1,0 +1,8 @@
+{
+  "server": {
+    "certificate": "./config/ssl/cert.crt",
+    "port": 8443,
+    "privateKey": "./config/ssl/key.key",
+    "secure": false
+  }
+}

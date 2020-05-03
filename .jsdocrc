@@ -1,0 +1,11 @@
+{
+  "opts": {
+    "destination": "docs"
+  },
+  "source": {
+    "exclude": [".git", "camera", "docs", "logs", "node_modules"],
+    "excludePattern": ".+\\.(json|md)?$",
+    "include": ["./", "./bin", "./raspi", "./routes"],
+    "includePattern": "(.+\\.js(doc|x)?)|([^.]+)$"
+  }
+}

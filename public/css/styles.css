@@ -1,0 +1,103 @@
+html,
+body {
+  background-color: #f5f5f5;
+  color: #343a40;
+  font-family: "Raleway", sans-serif;
+  height: 100%;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+/* .main */
+.main {
+  background-color: #f0f0f0;
+  padding: 48px 0;
+}
+
+/* .appbar */
+.appbar {
+  padding: 0 15px;
+}
+.appbar-brand {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  font-size: 34px;
+}
+.appbar-brand:hover,
+.appbar-brand:visited {
+  text-decoration: none;
+}
+.appbar-brand img {
+  height: 46px;
+  margin-right: 10px;
+}
+
+/* .events-container */
+.events-container {
+  margin-bottom: 0;
+}
+.events-container ul {
+  height: 500px;
+  margin-bottom: 20px;
+  overflow: auto;
+}
+.events-container ul li:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+.events-container h2 {
+  margin-bottom: 20px;
+}
+
+/* .event */
+.event::before {
+  content: "";
+  display: inline-block;
+  height: 64px;
+  vertical-align: middle;
+  width: 6px;
+}
+.event.event-success::before {
+  background-color: #32e875;
+}
+.event.event-info::before {
+  background-color: #406e8e;
+}
+.event.event-danger::before {
+  background-color: #6a041d;
+}
+.event .event-text {
+  display: inline-block;
+  padding: 0 12px;
+  vertical-align: middle;
+}
+.event .event-text h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.event .event-text small {
+  font-size: 13px;
+}
+
+/* #highlighted-image-placeholder */
+#highlighted-image-placeholder {
+  display: block;
+  font-size: 30px;
+  opacity: 0.25;
+  text-align: center;
+}
+
+/* .image-container */
+#img-container .img-fluid {
+  width: 100%;
+}
+
+/* .footer */
+.footer {
+  padding: 24px;
+}
+.footer p {
+  margin: 0 auto;
+}

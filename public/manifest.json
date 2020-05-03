@@ -1,0 +1,17 @@
+{
+  "name": "node-rpi-feeder",
+  "short_name": "node-rpi-feeder",
+  "description": "Pet feeder with live stream and hotword detection powered by a Raspberry Pi 3 Model B and Node.js",
+  "theme_color": "#ffffff",
+  "background_color": "#2196f3",
+  "display": "minimal-ui",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

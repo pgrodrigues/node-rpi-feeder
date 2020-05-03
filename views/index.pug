@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .mui-container-fluid
+        .mui-row
+            .mui-col-xs-12
+                button#start-feeder-btn.mui-btn.mui-btn--primary(type="button", disabled) Feed
+                button#start-speech-recording-btn.mui-btn.mui-btn--accent(type="button", disabled) Start speech recording
+        .mui-row
+            .mui-col-lg-8.mui-col-xs-12
+                #img-container
+                    span#highlighted-image-placeholder
+            .mui-col-lg-4.mui-col-xs-12
+                .events-container.mui-panel
+                    h2 Events
+                    ul#events.mui-list--unstyled
